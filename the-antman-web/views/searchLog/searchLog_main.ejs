@@ -1,0 +1,233 @@
+<% layout('../layout/default_layout')%>
+
+<div class="page-body">
+
+	<!--버튼 삭제 -->
+	<!-- <div class="btn-right mgb5">
+      <button class="btn btn-w-m btn-danger " type="button" data-toggle="modal" data-target="#myModal2">팝업샘플</button>
+      <button class="btn btn-primary" type="button"><i class="fa fa-check"></i>&nbsp;&nbsp;저장</button>
+      <button class="btn btn-primary" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;삭제</button>
+    </div> -->
+
+	<!-- 검색조건2 //-->
+	<div class="margin-bottom-20">
+		<table class="table-condensed w100p">
+			<tbody>
+				<tr>
+					<td class="w95p">
+						<div class="col-lg-12 col-md-12 col-xs-12 no-padding row">
+							<div class="col-lg-4 col-sm-6 col-xs-12">
+								<div class="form-group">
+									<label class="control-label" for="order_id">업무</label>
+									<select id="indexList" name="indexList" class="form-control input-sm">
+										<!-- <option>옵션1</option>
+					                        <option>전체</option>
+					                        <option>옵션2</option>
+					                        <option>옵션3</option>
+                                        -->
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-8 col-sm-12 col-xs-12">
+								<div class="form-group">
+									<label for="sminput">조회일자</label>
+									<div class="row">
+										<div class="col-md-5 col-xs-12">
+											<div class="row">
+												<div class="col-lg-12 col-sm-12 col-xs-12">
+													<div class="row">
+														<div class="col-lg-6 col-sm-12 col-xs-12">
+															<div class="input-group">
+																<input class="form-control date-picker input-sm" id="datepicker1" type="text" data-date-format="yyyy-mm-dd"> <span class="input-group-addon"> <i class="fa fa-calendar"></i>
+																</span>
+															</div>
+														</div>
+														<div class="col-lg-6 col-sm-12 col-xs-12">
+															<div class="input-group">
+																<input class="form-control timepicker input-sm" id="timepicker1" type="text"> <span class="input-group-addon"> <i class="fa fa-clock-o"></i>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2 col-xs-12">
+											<p class="fa-2x text-align-center">~</p>
+										</div>
+										<div class="col-md-5 col-xs-12">
+											<div class="row">
+												<div class="col-lg-6 col-sm-12 col-xs-12">
+													<div class="input-group">
+														<input class="form-control date-picker input-sm" id="datepicker2" type="text" data-date-format="yyyy-mm-dd"> <span class="input-group-addon"> <i class="fa fa-calendar"></i>
+														</span>
+													</div>
+												</div>
+												<div class="col-lg-6 col-sm-12 col-xs-12">
+													<div class="input-group">
+														<input class="form-control timepicker input-sm" id="timepicker2" type="text"> <span class="input-group-addon"> <i class="fa fa-clock-o"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-md-12 col-xs-12 no-padding row">
+							<div class="col-lg-4 col-sm-6 col-xs-12">
+								<div class="form-group">
+									<label class="control-label" for="order_id">로그종류</label>
+									<select id="logType" name="logType" class="form-control input-sm">
+										<option>전체</option>
+										<!--
+										<option>옵션1</option>
+										<option>옵션2</option>
+										<option>옵션3</option> -->
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-8 col-sm-6 col-xs-12">
+								<div class="form-group">
+									<label class="control-label" for="order_id">검색어</label>
+									<div class="input-group input-group-sm">
+										<input id="searchText" type="text" class="form-control">
+										<span class="input-group-btn">
+										  <button class="btn btn-default" type="button">+ 상세검색</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td class="w5p bordered-left-1 bordered-lightgray text-align-center">
+						<button id="btnSearchLog" class="btn btn-info btn-lg" type="button">
+							<i class="fa fa-search"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--// 검색조건2 -->
+
+	<div class="row">
+		<div class="col-xs-12 col-md-12 col-lg-12">
+			<div class="widget mgb20">
+				<!--레이어 기본간격은 = "margin-bottom:30px", 수정된 레이어 간격 mgb5 클래스 추가 = "margin-bottom:5px" -->
+				<div class="widget-header">
+					<span class="widget-caption"><i class="menu-icon fa fa-bar-chart-o themeprimary"></i> Count조회</span>
+					<div class="widget-buttons">
+						<a href="#" data-toggle="maximize"> <i class="fa fa-expand"></i>
+						</a> <a href="#" data-toggle="collapse"> <i class="fa fa-minus"></i>
+						</a> <a href="#" data-toggle="dispose"> <i class="fa fa-times"></i>
+						</a>
+					</div>
+				</div>
+			
+				<div class="widget-body">
+					차트 interval (test)
+					<select id="interval_select">
+						<option value="1M">Monthly</option>
+						<option value="1d">Daily</option>
+						<option value="1h" selected="selected">Hourly</option>
+						<!--<option value="1m">Minute</option>
+						<option value="1s">Second</option>-->
+					</select>
+				
+					<div class="row">
+						<div class="col-sm-12" id="canvasDiv">
+							<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12 col-sm-12 col-xs-12">
+			<div class="widget">
+				<div class="widget-header with-footer">
+					<span class="widget-caption"><i class="menu-icon fa fa-file-code-o themeprimary"></i> 로그 검색 결과</span>
+					<div class="widget-buttons">
+						<a href="#" data-toggle="maximize"> <i class="fa fa-expand"></i>
+						</a> <a href="#" data-toggle="collapse"> <i class="fa fa-minus"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="widget-body">
+					<div class="btn-group fr mgb10">
+						<button type="button" class="btn btn-default">
+							<i class="fa fa-file-excel-o"></i> Excel
+						</button>
+						<button type="button" class="btn btn-default">
+							<i class="fa fa-print"></i> Print
+						</button>
+						<button type="button" id="addColumnBtn" class="btn btn-default">
+							<i class="fa fa-columns"></i> 컬럼추가
+						</button>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-ellipsis-horizontal"></i> 목록갯수 <i class="fa fa-angle-down"></i>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:changePagesize(10);">10</a></li>
+								<li><a href="javascript:changePagesize(30);">30</a></li>
+								<li><a href="javascript:changePagesize(50);">50</a></li>
+								<li><a href="javascript:changePagesize(100);">100</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="flip-scroll">
+						<div class="scrollauto-table">
+							<table id="searchLogTable" class="table table-hover">
+								<thead class="flip-content bordered-blue">
+								</thead>
+								<tbody id="searchLogTableBody">
+								</tbody>
+							</table>
+						</div>
+
+						<div class="btn-page">
+							<ul id="pageDiv" class="pagination">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content" id="fieldList" style="margin-left:20px; display:none;"></div>
+
+<script src="/js/searchLog/searchLog_main.js"></script>
+
+<script type="text/javascript">
+	$(window).bind("load", function() {
+
+		/*Sets Themed Colors Based on Themes*/
+		themeprimary = getThemeColorFromCss('themeprimary');
+		themesecondary = getThemeColorFromCss('themesecondary');
+		themethirdcolor = getThemeColorFromCss('themethirdcolor');
+		themefourthcolor = getThemeColorFromCss('themefourthcolor');
+		themefifthcolor = getThemeColorFromCss('themefifthcolor');
+
+		//InitiateFlotBarChart.init();
+		//차트 호출
+		//InitiateFlotSelectableChart.init(); 
+		//InitiateRealTimeChart.init();
+		//InitiateStackedChart.init();
+		//InitiateVisitorChart.init();
+		//InitiateAnnotationChart.init();
+		//InitiatePieChart.init();
+		//InitiateHorizonalChart.init();
+	});
+</script>

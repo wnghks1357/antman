@@ -1,0 +1,39 @@
+/* 메인에서만  body class 적용 */
+.mainBody{position:relative;min-width:1280px;}
+
+#main{width:100%;height:100%;overflow:hidden;padding:0;margin:0;color:#333; }
+#main a{color:#333;}
+#slideWrap{}
+
+/* 통계 Tab */
+.mainTab{position:relative;min-height:180px;padding-top:41px; margin:0 0 10px;}
+.mainTab dt{position:absolute;top:0;padding:10px 0 11px; color:#fff;}
+.mainTab dt a{display:block;font-size:14px;text-align:center;color:#fff !important;}
+.mainTab dt a:hover{text-decoration: none;}
+.mainTab .totalTab01{left:0;width:50%;background: #1d83eb;}
+.mainTab .totalTab02{left:50%;width:50%;background: #594fc1;}
+.mainTab dd{display:none;padding:4px;min-height:201px; height:225px;}
+.mainTab .totalCon01{background: #1d83eb;}
+.mainTab .totalCon02{background: #594fc1;}
+.mainTab .graphWrap{margin:0;height:217px;background: #fff; text-align:center;}
+.mainTab dt.on + dd{display:block;}
+
+/* 더보기(페이지 이동) */
+.btnMore{position:absolute;z-index:2;right:30px;top:13px;display:block;width:12px;height:12px;padding:8px 5px;background: url(../img/ico_plus_b.png) no-repeat 50% 50%;font-size:0;line-height:0;}
+.btnMoreClose{position:absolute;z-index:2;right:13px;top:4px;display:block;width:12px;height:12px;padding:8px 5px;background: url(../img/ico_minus_b.png) no-repeat 50% 50%;font-size:0;line-height:0;}
+.btnMoreTxt{position:absolute;right:20px;top:23px;display:block;}
+.mainTab .btnMore{top:52px;right:15px; background:#fff;}
+
+
+/*메인 백그라운드 2016.09.22추가*/
+#mbg {content:"";display:block;top:0;bottom:0;left:0;right:0;z-index:-1; background:url(../img/sd_visual02.jpg) no-repeat 0 50% !important;
+	background-size:cover !important;}
+.page-none{background:none !important;}
+
+/*20180130추가*/
+.mainlist {margin:0 0 10px; padding:10px 20px; box-sizing:border-box; width:100%; height:219px;-webkit-box-shadow:0 0 4px rgba(0,0,0,.5);-moz-box-shadow:0 0 4px rgba(0,0,0,.5);box-shadow:0 0 4px rgba(0,0,0,.5);background:#fff; position:relative;}
+.mainlist ul { list-style:none; margin:0; padding:0; }
+.mainlist li { display:inline-block; color:#333; width:100%; padding:8px 0 10px; ; }
+.fs-14px {font-size:14px !important}
+.fs-16px {font-size:16px !important}
+.fs-18px {font-size:18px !important}

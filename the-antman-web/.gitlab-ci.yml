@@ -1,0 +1,78 @@
+image: docker:latest
+
+stages:
+  - feature_build
+  - feature_test
+  - feature_deploy
+  - develop_build
+  - develop_deploy
+
+feature_build_task:
+  image: node:latest
+  stage: feature_build
+  script:
+  - echo "feature_build"
+  - npm install
+  tags:
+  - docker
+  only:
+  - /^feature-.*$/
+  
+feature_test_task:
+  image: node:latest
+  stage: feature_test
+  script:
+  - echo "feature_test"
+  - npm init --yes
+  - npm install mocha
+  - npm install supertest
+  - npm test
+  tags:
+  - docker
+  only:
+  - /^feature-.*$/
+  
+feature_deploy_task:
+  image: node:latest
+  stage: feature_deploy 
+  script:
+  - echo "merge request to develop"
+  - curl --header "Private-Token:$PRIVATE_KEY" -H "Content-Type:application/json" -X POST -d "{\"source_branch\":\"$CI_COMMIT_REF_NAME\", \"target_branch\":\"develop-1\",  \"id\":\"$CI_PROJECT_ID\", \"title\":\"$CI_COMMIT_REF_NAME\", \"description\":\"desc\", \"assignee_id\":\"$GITLAB_USER_ID\"}" https://gitlab.adpt.pe.kr/api/v4/projects/$CI_PROJECT_ID/merge_requests  
+  - echo "Request code review"
+  dependencies: []
+  tags:
+  - docker
+  only:
+  - /^feature-.*$/
+
+develop_build_task:
+  stage: develop_build
+  script:
+  - echo "develop_build"
+  - tar cvzf antman.tgz *
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+    - antman.tgz
+  tags:
+  - docker
+  only:
+  - /^develop-.*$/
+  
+develop_deploy_task:
+  stage: develop_deploy
+  image: amazonlinux:latest
+  script:
+  - echo "develop_deploy"
+  - curl -O https://bootstrap.pypa.io/get-pip.py
+  - python get-pip.py --user 
+  - export PATH=~/.local/bin:$PATH
+  - pip install awscli --upgrade --user
+  - echo "Copy binary to s3"
+  - aws s3 cp antman.tgz s3://antman-repos/live/antman.tgz 
+  dependencies: 
+  - develop_build_task
+  tags:
+  - docker
+  only:
+  - /^develop-.*$/
